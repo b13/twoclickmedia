@@ -7,8 +7,11 @@
 			<authorEmail>typo3@b13.com</authorEmail>
 		</header>
 		<body>
-			<trans-unit id="privacytext">
+			<trans-unit id="privacytext.youtube" resname="privacytext.youtube">
 				<source>By playing this video, YouTube may save personal data such as your IP address.</source>
+			</trans-unit>
+			<trans-unit id="privacytext.vimeo" resname="privacytext.vimeo">
+				<source>By playing this video, Vimeo may save personal data such as your IP address.</source>
 			</trans-unit>
 		</body>
 	</file>

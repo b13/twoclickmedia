@@ -20,7 +20,8 @@ use TYPO3\CMS\Fluid\View\StandaloneView;
 
 class VimeoRenderer extends \TYPO3\CMS\Core\Resource\Rendering\VimeoRenderer
 {
-    const templateName = 'Iframe';
+    const templateName = 'Vimeo';
+    const type = 'vimeo';
 
     /**
      * @return int
@@ -54,22 +55,30 @@ class VimeoRenderer extends \TYPO3\CMS\Core\Resource\Rendering\VimeoRenderer
         $configurationManager = $objectManager->get(ConfigurationManager::class);
         $extensionConfiguration = $configurationManager->getConfiguration(ConfigurationManager::CONFIGURATION_TYPE_FRAMEWORK, 'Twoclickmedia');
 
-        $iframeView = $objectManager->get(StandaloneView::class);
-        $templateRootPath = GeneralUtility::getFileAbsFileName($extensionConfiguration['view']['templateRootPath']);
-        $templatePathAndFilename = $templateRootPath . self::templateName . '.html';
+        if (!$extensionConfiguration['settings']['mediaSecure']) {
+            return parent::render($file, $width, $height, $options, $usedPathsRelativeToCurrentScript);
+        }
 
         $variables = [
             'file' => $file,
             'src' => $src,
+            'type' => self::type,
             'attributes' => empty($attributes) ? '' : ' ' . $this->implodeAttributes($attributes)
         ];
-        $iframeView->setTemplatePathAndFilename($templatePathAndFilename);
-        $iframeView->assignMultiple($variables);
 
-        if ($extensionConfiguration['settings']['mediaSecure']) {
-            return $iframeView->render();
+        // calculate the padding for the item
+        if (!empty($file->getProperty('height')) && !empty($file->getProperty('width'))) {
+            $paddingTop = ($file->getProperty('height') / $file->getProperty('width')) * 100;
+            $variables['paddingTop'] = $paddingTop;
         }
 
-        return parent::render($file, $width, $height, $options, $usedPathsRelativeToCurrentScript);
+        $view = $objectManager->get(StandaloneView::class);
+        $view->setLayoutRootPaths($extensionConfiguration['view']['layoutRootPaths']);
+        $view->setPartialRootPaths($extensionConfiguration['view']['partialRootPaths']);
+        $view->setTemplateRootPaths($extensionConfiguration['view']['templateRootPaths']);
+        $view->setTemplate(self::templateName);
+        $view->assignMultiple($variables);
+
+        return $view->render();
     }
 }

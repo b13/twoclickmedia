@@ -1,11 +1,12 @@
 document.onreadystatechange = function () {
+	const selector = '.JS_twoclickmedia';
 	const infoselector = '.JS_twoclickmedia-info';
 	const infoselectorhideclass = 'twoclickmedia__info--hide';
 	const iframeselector = '.JS_twoclickmedia-iframe';
 	const iframeselectorshowclass = 'twoclickmedia__iframe--show';
 
 	if (document.readyState === 'complete') {
-		let twoclickmedia = document.querySelectorAll('.JS_twoclickmedia');
+		let twoclickmedia = document.querySelectorAll(selector);
 		twoclickmedia.forEach( function (twoclickmediaelement) {
 			twoclickmediaelement.addEventListener('click', function () {
 				let info = this.querySelector(infoselector);

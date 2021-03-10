@@ -1,5 +1,7 @@
 plugin.tx_twoclickmedia {
     settings.mediaSecure = 0
 
-    view.templateRootPath = EXT:twoclickmedia/Resources/Private/Templates/
+    view.layoutRootPaths.0 = EXT:twoclickmedia/Resources/Private/Layouts/
+    view.templateRootPaths.0 = EXT:twoclickmedia/Resources/Private/Templates/
+    view.partialRootPaths.0 = EXT:twoclickmedia/Resources/Private/Partials/
 }
