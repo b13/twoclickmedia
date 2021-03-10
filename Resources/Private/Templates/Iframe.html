@@ -1,0 +1,40 @@
+<html
+	xmlns:f="http://typo3.org/ns/TYPO3/CMS/Fluid/ViewHelpers"
+	xmlns:ac="http://typo3.org/ns/B13/Assetcollector/ViewHelpers"
+	data-namespace-typo3-fluid="true"
+>
+<ac:css file="EXT:twoclickmedia/Resources/Public/Css/Twoclickmedia.css" />
+<ac:js file="EXT:twoclickmedia/Resources/Public/Js/Twoclickmedia.js" />
+<div class="twoclickmedia">
+	<div class="twoclickmedia__wrapper twoclickmedia__wrapper--ratio JS_twoclickmedia">
+		<div class="twoclickmedia__info JS_twoclickmedia-info" style="background-image: url({f:uri.image(src: file.uid, treatIdAsReference: '1')})">
+			<f:if condition="{file.properties.height} && {file.properties.width}">
+				<f:variable name="padding" value="{file.properties.height / file.properties.width * 100}" />
+			</f:if>
+			<f:switch expression="{file.extension}">
+				<f:case value="youtube">
+					<svg class="twoclickmedia__play" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 68.126 47.998"><path d="M66.7 7.5a8.56 8.56 0 00-6.023-6.062C55.367 0 34.063 0 34.063 0s-21.3 0-26.617 1.433A8.56 8.56 0 001.424 7.5C0 12.842 0 24 0 24s0 11.156 1.424 16.5a8.56 8.56 0 006.023 6.062C12.759 48 34.063 48 34.063 48s21.3 0 26.617-1.433A8.56 8.56 0 0066.7 40.5c1.426-5.344 1.426-16.5 1.426-16.5s0-11.158-1.426-16.5z" fill="red"/><path d="M27.096 34.128l17.806-10.129-17.806-10.13z" fill="#fff"/></svg>
+				</f:case>
+				<f:case value="vimeo">
+					<svg class="twoclickmedia__play" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 83 48"><rect width="83" height="48" rx="5" fill="#1ab7ea"/><path d="M29.993 37.972v-27.78l27.78 13.89z" fill="#fff"/></svg>
+				</f:case>
+				<f:defaultCase>
+					<svg class="twoclickmedia__play" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 54 54"><path d="M27 0A27 27 0 110 27 27 27 0 0127 0z"/><path d="M21.097 37.13l17.806-10.129-17.806-10.13z" fill="#fff"/></svg>
+				</f:defaultCase>
+			</f:switch>
+			<div class="twoclickmedia__privacy">
+				<svg class="twoclickmedia__privacy-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M0 0h24v24H0z" fill="none"/><circle cx="9" cy="9" r="9" transform="translate(3 3)" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/><path fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 8h.01"/><path d="M11 12h1v4h1" fill="none" stroke="#fff" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5"/></svg>
+				{f:translate(extensionName: 'twoclickmedia', key: 'privacytext')}
+			</div>
+		</div>
+		<div class="twoclickmedia__video">
+			<iframe class="JS_twoclickmedia-iframe twoclickmedia__iframe" data-src="{src}" {attributes -> f:format.htmlentitiesDecode()}></iframe>
+		</div>
+	</div>
+</div>
+<ac:css>
+	.twoclickmedia__wrapper.twoclickmedia__wrapper--ratio {
+		padding-top: {padding}%;
+	}
+</ac:css>
+</html>

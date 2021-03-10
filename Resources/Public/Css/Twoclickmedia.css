@@ -1,0 +1,71 @@
+:root {
+	--privacy-bg: #00000080;
+	--textcolor: #fff;
+}
+
+.twoclickmedia {
+	position: relative;
+}
+
+.twoclickmedia__wrapper {
+	display: inline-block;
+	overflow: hidden;
+	padding-top: 56.25%;
+	position: relative;
+	width: 100%;
+}
+
+.twoclickmedia__privacy {
+	background-color: var(--privacy-bg);
+	bottom: 0;
+	color: var(--textcolor);
+	display: flex;
+	left: 0;
+	padding: 12px 20px;
+	position: absolute;
+	right: 0;
+}
+
+.twoclickmedia__privacy-icon {
+	height: 24px;
+	margin-right: 12px;
+	width: 24px;
+}
+
+.twoclickmedia__info {
+	align-items: center;
+	background-size: cover;
+	bottom: 0;
+	cursor: pointer;
+	display: flex;
+	justify-content: center;
+	left: 0;
+	position: absolute;
+	right: 0;
+	top: 0;
+}
+
+
+.twoclickmedia__info--hide {
+	display: none;
+}
+
+.twoclickmedia__play {
+	height: 48px;
+	width: 83px;
+}
+
+.twoclickmedia__iframe {
+	display: none;
+	border: 0;
+	bottom: 0;
+	height: 100%;
+	left: 0;
+	position: absolute;
+	top: 0;
+	width: 100%;
+}
+
+.twoclickmedia__iframe--show {
+	display: block;
+}

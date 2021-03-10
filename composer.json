@@ -1,0 +1,21 @@
+{
+	"name": "b13/twoclickmedia",
+	"type": "typo3-cms-extension",
+	"description": "Enable external youtube and vimeo videos only on click for TYPO3",
+	"license": [
+		"GPL-2.0-or-later"
+	],
+	"extra": {
+		"typo3/cms": {
+			"extension-key": "twoclickmedia"
+		}
+	},
+	"autoload": {
+		"psr-4": {
+			"B13\\Twoclickmedia\\": "Classes/"
+		}
+	},
+	"require": {
+		"b13/assetcollector": "*"
+	}
+}

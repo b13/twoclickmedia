@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes" ?>
+<xliff version="1.0">
+	<file>
+		<header>
+			<description>Language Labels for EXT:twoclickmedia</description>
+			<authorName>Daniel Gorges</authorName>
+			<authorEmail>typo3@b13.com</authorEmail>
+		</header>
+		<body>
+			<trans-unit id="privacytext">
+				<source>By playing this video, YouTube may save personal data such as your IP address.</source>
+			</trans-unit>
+		</body>
+	</file>
+</xliff>
