@@ -1,29 +1,41 @@
-# EXT:twoclickmedia - A TYPO3 Extension to embed youtube / vimeo videos gdpr correct
+# EXT:twoclickmedia - Two click solution to include YouTube / Vimeo videos 
 
-## Feature
+This extension replaces TYPO3's default YouTube/VimeoRenderer with a two click solution, showing a preview/teaser first 
+and adding the iFrame connecting to YouTube or Vimeo once a user clicks on the preview image. It does not set or read
+any cookies and does not save a user's default state (there is no &quot;show me all YouTube videos on this site&quot; 
+setting).
 
-- Simple possibility to create gdpr ready youtube and vimeo videos
-- Simply install, enable this feature and you are ready to go
-- Adjustable template via fluid templates
+This extension comes with a default template for the preview image as well as a default JS to insert the iFrame normally
+used for displaying YouTube or Vimeo content. 
 
 ## Installation
 
-Install this extension via `composer req b13/twoclickmedia` or download it from the [TYPO3 Extension Repository](https://extensions.typo3.org/extension/twoclickmedia/) and activate
+Install this extension via `composer req b13/twoclickmedia` or download it from the 
+[TYPO3 Extension Repository](https://extensions.typo3.org/extension/twoclickmedia/) and activate
 the extension in the Extension Manager of your TYPO3 installation.
 
-Now this feature can be enabled via typoscript:
+Include this extensions' TypoScript settings by adding the default settings to your TypoScript setup:
 
 ```
-plugin.tx_twoclickmedia.settings.mediaSecure = 1
+@import 'EXT:twoclickmedia/Configuration/TypoScript/setup.typoscript'
 ```
 
 ## Template
 
-Via layoutRootPaths, templaterootpaths or partialRootPaths the default layout, template or partial can be overwritten:
+If you need to change the default template provided by this extension, add your own Fluid paths to the configuration:
+
 ```
 plugin.tx_twoclickmedia {
-    view.layoutRootPaths.10 = EXT:twoclickmedia/Resources/Private/Layouts/
-    view.templateRootPaths.10 = EXT:twoclickmedia/Resources/Private/Templates/
-    view.partialRootPaths.10 = EXT:twoclickmedia/Resources/Private/Partials/
+    view.layoutRootPaths.100 = EXT:my_extension/Resources/Private/Plugins/Twocklickmedia/Layouts/
+    view.templateRootPaths.100 = EXT:my_extension/Resources/Private/Plugins/Twocklickmedia/Templates/
+    view.partialRootPaths.100 = EXT:my_extension/Resources/Private/Plugins/Twocklickmedia/Partials/
 }
 ```
+
+## Credits
+
+This extension was created by Daniel Gorges in 2021 for [b13 GmbH, Stuttgart](https://b13.com).
+
+[Find more TYPO3 extensions we have developed](https://b13.com/useful-typo3-extensions-from-b13-to-you) that help us 
+deliver value in client projects. As part of the way we work, we focus on testing and best practices to ensure 
+long-term performance, reliability, and results in all our code.
