@@ -1,8 +1,8 @@
 <?php
 
 $EM_CONF[$_EXTKEY] = [
-    'title' => 'Two Click Media',
-    'description' => 'Enable external youtube and vimeo videos only on click for TYPO3',
+    'title' => 'Two-Click Media',
+    'description' => 'Two click solution to include YouTube / Vimeo videos',
     'category' => 'misc',
     'author' => 'b13 GmbH',
     'author_email' => 'typo3@b13.com',
