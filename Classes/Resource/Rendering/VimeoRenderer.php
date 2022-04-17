@@ -13,6 +13,7 @@ namespace B13\Twoclickmedia\Resource\Rendering;
  */
 
 use TYPO3\CMS\Core\Resource\FileInterface;
+use TYPO3\CMS\Core\Resource\FileReference;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManager;
 use TYPO3\CMS\Extbase\Object\ObjectManager;
@@ -63,6 +64,7 @@ class VimeoRenderer extends \TYPO3\CMS\Core\Resource\Rendering\VimeoRenderer
             'file' => $file,
             'src' => $src,
             'type' => self::type,
+            'isReference' => $file instanceof FileReference,
             'attributes' => empty($attributes) ? '' : ' ' . $this->implodeAttributes($attributes)
         ];
 
