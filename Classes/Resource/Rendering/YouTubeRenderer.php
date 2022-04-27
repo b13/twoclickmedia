@@ -16,13 +16,22 @@ use TYPO3\CMS\Core\Resource\FileInterface;
 use TYPO3\CMS\Core\Resource\FileReference;
 use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManager;
-use TYPO3\CMS\Extbase\Object\ObjectManager;
 use TYPO3\CMS\Fluid\View\StandaloneView;
 
 class YouTubeRenderer extends \TYPO3\CMS\Core\Resource\Rendering\YouTubeRenderer
 {
     const templateName = 'YouTube';
     const type = 'youtube';
+
+    /**
+     * @var ConfigurationManager
+     */
+    protected $configurationManager;
+
+    public function injectConfigurationManager(ConfigurationManager $configurationManager): void
+    {
+        $this->configurationManager = $configurationManager;
+    }
 
     /**
      * @return int
@@ -52,9 +61,7 @@ class YouTubeRenderer extends \TYPO3\CMS\Core\Resource\Rendering\YouTubeRenderer
         $src = $this->createYouTubeUrl($options, $file);
         $attributes = $this->collectIframeAttributes($width, $height, $options);
 
-        $objectManager = GeneralUtility::makeInstance(ObjectManager::class);
-        $configurationManager = $objectManager->get(ConfigurationManager::class);
-        $extensionConfiguration = $configurationManager->getConfiguration(ConfigurationManager::CONFIGURATION_TYPE_FRAMEWORK, 'Twoclickmedia');
+        $extensionConfiguration = $this->configurationManager->getConfiguration(ConfigurationManager::CONFIGURATION_TYPE_FRAMEWORK, 'Twoclickmedia');
 
         if (!$extensionConfiguration['settings']['mediaSecure']) {
             return parent::render($file, $width, $height, $options, $usedPathsRelativeToCurrentScript);
@@ -74,7 +81,7 @@ class YouTubeRenderer extends \TYPO3\CMS\Core\Resource\Rendering\YouTubeRenderer
             $variables['paddingTop'] = $paddingTop;
         }
 
-        $view = $objectManager->get(StandaloneView::class);
+        $view = GeneralUtility::makeInstance(StandaloneView::class);
         $view->setLayoutRootPaths($extensionConfiguration['view']['layoutRootPaths']);
         $view->setPartialRootPaths($extensionConfiguration['view']['partialRootPaths']);
         $view->setTemplateRootPaths($extensionConfiguration['view']['templateRootPaths']);
