@@ -63,7 +63,7 @@ class YouTubeRenderer extends \TYPO3\CMS\Core\Resource\Rendering\YouTubeRenderer
 
         $extensionConfiguration = $this->configurationManager->getConfiguration(ConfigurationManager::CONFIGURATION_TYPE_FRAMEWORK, 'Twoclickmedia');
 
-        if (!$extensionConfiguration['settings']['mediaSecure']) {
+        if (!($extensionConfiguration['settings']['mediaSecure'] ?? false)) {
             return parent::render($file, $width, $height, $options, $usedPathsRelativeToCurrentScript);
         }
 
