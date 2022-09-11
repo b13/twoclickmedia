@@ -72,6 +72,7 @@ class VimeoRenderer extends \TYPO3\CMS\Core\Resource\Rendering\VimeoRenderer
             'src' => $src,
             'type' => self::type,
             'isReference' => $file instanceof FileReference,
+            'dimensions' => ['width' => $width, 'height' => $height],
             'attributes' => empty($attributes) ? '' : ' ' . $this->implodeAttributes($attributes)
         ];
 

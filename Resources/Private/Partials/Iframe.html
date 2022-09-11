@@ -6,7 +6,7 @@
 <f:asset.script identifier="twoclickmedia" src="EXT:twoclickmedia/Resources/Public/Js/Twoclickmedia.js" />
 <f:asset.css identifier="twoclickmedia" href="EXT:twoclickmedia/Resources/Public/Css/Twoclickmedia.css" />
 <div class="twoclickmedia">
-	<div class="twoclickmedia__wrapper JS_twoclickmedia" {f:if(condition: paddingTop, then: 'style="padding-top: {paddingTop}%;"')}>
+	<div class="twoclickmedia__wrapper JS_twoclickmedia" style="width: {dimensions.width}px; height: {dimensions.height}px; {f:if(condition: paddingTop, then: 'padding-top: {paddingTop}%;')}">
 		<div class="twoclickmedia__info JS_twoclickmedia-info" style="background-image: url({f:uri.image(src: file.uid, treatIdAsReference: isReference)})">
 			<f:if condition="{type} == 'youtube'">
 				<f:then>
