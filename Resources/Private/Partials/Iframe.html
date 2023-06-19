@@ -7,7 +7,7 @@
 <f:asset.css identifier="twoclickmedia" href="EXT:twoclickmedia/Resources/Public/Css/Twoclickmedia.css" />
 <div class="twoclickmedia">
 	<div class="twoclickmedia__wrapper JS_twoclickmedia" {f:if(condition: paddingTop, then: 'style="padding-top: {paddingTop}%;"')}>
-		<div class="twoclickmedia__info JS_twoclickmedia-info" style="background-image: url({f:uri.image(src: file.uid, treatIdAsReference: isReference)})">
+		<div class="twoclickmedia__info JS_twoclickmedia-info">
 			<f:if condition="{type} == 'youtube'">
 				<f:then>
 					<svg class="twoclickmedia__play" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 68.126 47.998"><path d="M66.7 7.5a8.56 8.56 0 00-6.023-6.062C55.367 0 34.063 0 34.063 0s-21.3 0-26.617 1.433A8.56 8.56 0 001.424 7.5C0 12.842 0 24 0 24s0 11.156 1.424 16.5a8.56 8.56 0 006.023 6.062C12.759 48 34.063 48 34.063 48s21.3 0 26.617-1.433A8.56 8.56 0 0066.7 40.5c1.426-5.344 1.426-16.5 1.426-16.5s0-11.158-1.426-16.5z" fill="red"/><path d="M27.096 34.128l17.806-10.129-17.806-10.13z" fill="#fff"/></svg>
