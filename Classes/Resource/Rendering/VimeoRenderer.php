@@ -86,7 +86,10 @@ class VimeoRenderer extends \TYPO3\CMS\Core\Resource\Rendering\VimeoRenderer
         $view->setTemplateRootPaths($extensionConfiguration['view']['templateRootPaths']);
         $view->setTemplate(self::templateName);
         $view->assignMultiple($variables);
-        $view->setRequest($GLOBALS['TYPO3_REQUEST']);
+        
+        if (method_exists($view, 'setRequest')) {
+            $view->setRequest($GLOBALS['TYPO3_REQUEST']);
+        }
 
         return $view->render();
     }
