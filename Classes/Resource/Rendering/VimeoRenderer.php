@@ -20,8 +20,8 @@ use TYPO3\CMS\Fluid\View\StandaloneView;
 
 class VimeoRenderer extends \TYPO3\CMS\Core\Resource\Rendering\VimeoRenderer
 {
-    const templateName = 'Vimeo';
-    const type = 'vimeo';
+    public const templateName = 'Vimeo';
+    public const type = 'vimeo';
 
     /**
      * @var ConfigurationManager
@@ -47,7 +47,6 @@ class VimeoRenderer extends \TYPO3\CMS\Core\Resource\Rendering\VimeoRenderer
      * @param int|string $height
      * @param array $options
      * @param bool $usedPathsRelativeToCurrentScript
-     * @param array $variables
      * @return string
      */
     public function render(
@@ -72,12 +71,12 @@ class VimeoRenderer extends \TYPO3\CMS\Core\Resource\Rendering\VimeoRenderer
             'src' => $src,
             'type' => self::type,
             'isReference' => $file instanceof FileReference,
-            'attributes' => empty($attributes) ? '' : ' ' . $this->implodeAttributes($attributes)
+            'attributes' => empty($attributes) ? '' : ' ' . $this->implodeAttributes($attributes),
         ];
 
         // calculate the padding for the item
         if (!empty($file->getProperty('height')) && !empty($file->getProperty('width'))) {
-            $paddingTop = ($file->getProperty('height') / $file->getProperty('width')) * 100;
+            $paddingTop = ((int)$file->getProperty('height') / (int)$file->getProperty('width')) * 100;
             $variables['paddingTop'] = $paddingTop;
         }
 
