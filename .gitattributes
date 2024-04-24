@@ -1,4 +1,6 @@
 /.editorconfig export-ignore
+/.github export-ignore
 /.gitignore export-ignore
 /.gitattributes export-ignore
 /.php-cs-fixer.php export-ignore
+/phpstan.neon export-ignore
