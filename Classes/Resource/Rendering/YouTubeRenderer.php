@@ -20,8 +20,8 @@ use TYPO3\CMS\Fluid\View\StandaloneView;
 
 class YouTubeRenderer extends \TYPO3\CMS\Core\Resource\Rendering\YouTubeRenderer
 {
-    const templateName = 'YouTube';
-    const type = 'youtube';
+    public const templateName = 'YouTube';
+    public const type = 'youtube';
 
     /**
      * @var ConfigurationManager
@@ -47,7 +47,6 @@ class YouTubeRenderer extends \TYPO3\CMS\Core\Resource\Rendering\YouTubeRenderer
      * @param int|string $height
      * @param array $options
      * @param bool $usedPathsRelativeToCurrentScript
-     * @param array $variables
      * @return string
      */
     public function render(
@@ -73,12 +72,12 @@ class YouTubeRenderer extends \TYPO3\CMS\Core\Resource\Rendering\YouTubeRenderer
             'type' => self::type,
             'isReference' => $file instanceof FileReference,
             'dimensions' => ['width' => $width, 'height' => $height],
-            'attributes' => empty($attributes) ? '' : ' ' . $this->implodeAttributes($attributes)
+            'attributes' => empty($attributes) ? '' : ' ' . $this->implodeAttributes($attributes),
         ];
 
         // calculate the padding for the item
         if (!empty($file->getProperty('height')) && !empty($file->getProperty('width'))) {
-            $paddingTop = ($file->getProperty('height') / $file->getProperty('width')) * 100;
+            $paddingTop = ((int)$file->getProperty('height') / (int)$file->getProperty('width')) * 100;
             $variables['paddingTop'] = $paddingTop;
         }
 
@@ -88,6 +87,10 @@ class YouTubeRenderer extends \TYPO3\CMS\Core\Resource\Rendering\YouTubeRenderer
         $view->setTemplateRootPaths($extensionConfiguration['view']['templateRootPaths']);
         $view->setTemplate(self::templateName);
         $view->assignMultiple($variables);
+
+        if (method_exists($view, 'setRequest')) {
+            $view->setRequest($GLOBALS['TYPO3_REQUEST']);
+        }
 
         return $view->render();
     }
