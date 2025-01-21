@@ -46,15 +46,13 @@ class YouTubeRenderer extends \TYPO3\CMS\Core\Resource\Rendering\YouTubeRenderer
      * @param int|string $width
      * @param int|string $height
      * @param array $options
-     * @param bool $usedPathsRelativeToCurrentScript
      * @return string
      */
     public function render(
         FileInterface $file,
         $width,
         $height,
-        array $options = [],
-        $usedPathsRelativeToCurrentScript = false
+        array $options = []
     ) {
         $options = $this->collectOptions($options, $file);
         $src = $this->createYouTubeUrl($options, $file);
@@ -63,7 +61,7 @@ class YouTubeRenderer extends \TYPO3\CMS\Core\Resource\Rendering\YouTubeRenderer
         $extensionConfiguration = $this->configurationManager->getConfiguration(ConfigurationManager::CONFIGURATION_TYPE_FRAMEWORK, 'Twoclickmedia');
 
         if (!($extensionConfiguration['settings']['mediaSecure'] ?? false)) {
-            return parent::render($file, $width, $height, $options, $usedPathsRelativeToCurrentScript);
+            return parent::render($file, $width, $height, $options);
         }
 
         $variables = [
@@ -87,11 +85,7 @@ class YouTubeRenderer extends \TYPO3\CMS\Core\Resource\Rendering\YouTubeRenderer
         $view->setTemplateRootPaths($extensionConfiguration['view']['templateRootPaths']);
         $view->setTemplate(self::templateName);
         $view->assignMultiple($variables);
-
-        if (method_exists($view, 'setRequest')) {
-            $view->setRequest($GLOBALS['TYPO3_REQUEST']);
-        }
-
+        $view->setRequest($GLOBALS['TYPO3_REQUEST']);
         return $view->render();
     }
 }

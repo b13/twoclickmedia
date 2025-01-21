@@ -1,5 +1,7 @@
 <?php
 
+declare(strict_types=1);
+
 $EM_CONF[$_EXTKEY] = [
     'title' => 'Two-Click Media',
     'description' => 'Two click solution to include YouTube / Vimeo videos',
