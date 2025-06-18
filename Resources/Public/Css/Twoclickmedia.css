@@ -35,6 +35,7 @@
 .twoclickmedia__info {
 	align-items: center;
 	background-size: cover;
+    border: none;
 	bottom: 0;
 	cursor: pointer;
 	display: flex;
