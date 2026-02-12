@@ -8,9 +8,6 @@
 	"extra": {
 		"typo3/cms": {
 			"extension-key": "twoclickmedia"
-		},
-		"branch-alias": {
-			"dev-main": "1.x-dev"
 		}
 	},
 	"autoload": {
@@ -19,8 +16,8 @@
 		}
 	},
 	"require": {
-		"typo3/cms-core": "^12.4 || ^13.4",
-		"typo3/cms-fluid": "^12.4 || ^13.4"
+		"typo3/cms-core": "^12.4 || ^13.4 || ^14",
+		"typo3/cms-fluid": "^12.4 || ^13.4 || ^14"
 	},
 	"require-dev": {
 		"typo3/tailor": "^1.3",
