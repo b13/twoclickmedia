@@ -9,7 +9,6 @@ parameters:
 
   excludePaths:
     analyseAndScan:
-      - */node_modules/*
       - vendor/*
       - public/*
       - ./.php-cs-fixer.php

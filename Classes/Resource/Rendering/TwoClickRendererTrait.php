@@ -15,7 +15,6 @@ namespace B13\Twoclickmedia\Resource\Rendering;
 use Symfony\Component\DependencyInjection\Attribute\Autoconfigure;
 use TYPO3\CMS\Core\Resource\FileInterface;
 use TYPO3\CMS\Core\Resource\FileReference;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
 use TYPO3\CMS\Core\View\ViewFactoryData;
 use TYPO3\CMS\Core\View\ViewFactoryInterface;
 use TYPO3\CMS\Extbase\Configuration\ConfigurationManager;
@@ -70,5 +69,5 @@ trait TwoClickRendererTrait
         return $view->render(self::templateName);
     }
 
-    abstract function createVideoUrl(array $options, FileInterface $file);
+    abstract protected function createVideoUrl(array $options, FileInterface $file): string;
 }

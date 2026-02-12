@@ -13,10 +13,6 @@ namespace B13\Twoclickmedia\Resource\Rendering;
  */
 
 use TYPO3\CMS\Core\Resource\FileInterface;
-use TYPO3\CMS\Core\Resource\FileReference;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Configuration\ConfigurationManager;
-use TYPO3\CMS\Fluid\View\StandaloneView;
 
 class YouTubeRenderer extends \TYPO3\CMS\Core\Resource\Rendering\YouTubeRenderer
 {
@@ -33,7 +29,7 @@ class YouTubeRenderer extends \TYPO3\CMS\Core\Resource\Rendering\YouTubeRenderer
         return 50;
     }
 
-    public function createVideoUrl(array $options, FileInterface $file)
+    protected function createVideoUrl(array $options, FileInterface $file): string
     {
         return $this->createYouTubeUrl($options, $file);
     }

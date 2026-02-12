@@ -13,10 +13,6 @@ namespace B13\Twoclickmedia\Resource\Rendering;
  */
 
 use TYPO3\CMS\Core\Resource\FileInterface;
-use TYPO3\CMS\Core\Resource\FileReference;
-use TYPO3\CMS\Core\Utility\GeneralUtility;
-use TYPO3\CMS\Extbase\Configuration\ConfigurationManager;
-use TYPO3\CMS\Fluid\View\StandaloneView;
 
 class VimeoRenderer extends \TYPO3\CMS\Core\Resource\Rendering\VimeoRenderer
 {
@@ -33,7 +29,7 @@ class VimeoRenderer extends \TYPO3\CMS\Core\Resource\Rendering\VimeoRenderer
         return 50;
     }
 
-    public function createVideoUrl(array $options, FileInterface $file)
+    protected function createVideoUrl(array $options, FileInterface $file): string
     {
         return $this->createVimeoUrl($options, $file);
     }
