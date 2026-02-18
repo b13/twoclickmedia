@@ -26,7 +26,7 @@
 	},
 	"config": {
 		"allow-plugins": {
-			"typo3/cms-composer-installers": true,
+			"typo3/cms-composer-installers": false,
 			"typo3/class-alias-loader": true
 		}
 	}
