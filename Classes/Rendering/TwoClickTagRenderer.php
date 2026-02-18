@@ -4,26 +4,33 @@ declare(strict_types=1);
 
 namespace B13\Twoclickmedia\Rendering;
 
+/*
+ * This file is part of TYPO3 CMS-based extension "twoclickmedia" by b13.
+ *
+ * It is free software; you can redistribute it and/or modify it under
+ * the terms of the GNU General Public License, either version 2
+ * of the License, or any later version.
+ */
+
 use TYPO3\CMS\Core\Resource\FileInterface;
 use TYPO3\CMS\Core\Resource\FileReference;
 use TYPO3\CMS\Core\View\ViewFactoryData;
 use TYPO3\CMS\Core\View\ViewFactoryInterface;
-use TYPO3\CMS\Extbase\Configuration\ConfigurationManager;
 
 class TwoClickTagRenderer
 {
     protected array $extensionConfiguration;
 
     public function __construct(
-        ConfigurationManager $configurationManager,
         protected readonly ViewFactoryInterface $viewFactory,
     ) {
-        $this->extensionConfiguration = $configurationManager->getConfiguration(ConfigurationManager::CONFIGURATION_TYPE_FRAMEWORK, 'Twoclickmedia');
+        $typoScriptSettings = $GLOBALS['TYPO3_REQUEST']->getAttribute('frontend.typoscript')->getSetupArray();
+        $this->extensionConfiguration = $typoScriptSettings['plugin.']['tx_twoclickmedia.'];
     }
 
     public function shouldRender(): bool
     {
-        return (bool)($this->extensionConfiguration['settings']['mediaSecure'] ?? false);
+        return (bool)($this->extensionConfiguration['settings.']['mediaSecure'] ?? false);
     }
 
     public function render(
@@ -51,9 +58,9 @@ class TwoClickTagRenderer
         }
 
         $viewFactoryData = new ViewFactoryData(
-            templateRootPaths: $this->extensionConfiguration['view']['templateRootPaths'],
-            partialRootPaths: $this->extensionConfiguration['view']['partialRootPaths'],
-            layoutRootPaths: $this->extensionConfiguration['view']['layoutRootPaths'],
+            templateRootPaths: $this->extensionConfiguration['view.']['templateRootPaths.'],
+            partialRootPaths: $this->extensionConfiguration['view.']['partialRootPaths.'],
+            layoutRootPaths: $this->extensionConfiguration['view.']['layoutRootPaths.'],
             request: $GLOBALS['TYPO3_REQUEST'],
         );
         $view = $this->viewFactory->create($viewFactoryData);
