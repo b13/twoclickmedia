@@ -12,14 +12,17 @@ namespace B13\Twoclickmedia\Resource\Rendering;
  * of the License, or any later version.
  */
 
+use B13\Twoclickmedia\Rendering\TwoClickTagRenderer;
 use TYPO3\CMS\Core\Resource\FileInterface;
 
 class YouTubeRenderer extends \TYPO3\CMS\Core\Resource\Rendering\YouTubeRenderer
 {
-    use TwoClickRendererTrait;
-
     public const templateName = 'YouTube';
     public const type = 'youtube';
+
+    public function __construct(
+        protected TwoClickTagRenderer $tagRenderer
+    ) {}
 
     /**
      * @return int
@@ -29,8 +32,21 @@ class YouTubeRenderer extends \TYPO3\CMS\Core\Resource\Rendering\YouTubeRenderer
         return 50;
     }
 
-    protected function createVideoUrl(array $options, FileInterface $file): string
+    public function render(FileInterface $file, $width, $height, array $options = [])
     {
-        return $this->createYouTubeUrl($options, $file);
+        if (!$this->tagRenderer->shouldRender()) {
+            return parent::render($file, $width, $height, $options);
+        }
+        $options = $this->collectOptions($options, $file);
+        $attributes = $this->collectIframeAttributes($width, $height, $options);
+        return $this->tagRenderer->render(
+            file: $file,
+            src: $this->createYouTubeUrl($options, $file),
+            attributes: empty($attributes) ? '' : ' ' . $this->implodeAttributes($attributes),
+            width: $width,
+            height: $height,
+            type: self::type,
+            templateName: self::templateName,
+        );
     }
 }

@@ -12,14 +12,17 @@ namespace B13\Twoclickmedia\Resource\Rendering;
  * of the License, or any later version.
  */
 
+use B13\Twoclickmedia\Rendering\TwoClickTagRenderer;
 use TYPO3\CMS\Core\Resource\FileInterface;
 
 class VimeoRenderer extends \TYPO3\CMS\Core\Resource\Rendering\VimeoRenderer
 {
-    use TwoClickRendererTrait;
-
     public const templateName = 'Vimeo';
     public const type = 'vimeo';
+
+    public function __construct(
+        protected TwoClickTagRenderer $tagRenderer
+    ) {}
 
     /**
      * @return int
@@ -29,8 +32,21 @@ class VimeoRenderer extends \TYPO3\CMS\Core\Resource\Rendering\VimeoRenderer
         return 50;
     }
 
-    protected function createVideoUrl(array $options, FileInterface $file): string
+    public function render(FileInterface $file, $width, $height, array $options = [])
     {
-        return $this->createVimeoUrl($options, $file);
+        if (!$this->tagRenderer->shouldRender()) {
+            return parent::render($file, $width, $height, $options);
+        }
+        $options = $this->collectOptions($options, $file);
+        $attributes = $this->collectIframeAttributes($width, $height, $options);
+        return $this->tagRenderer->render(
+            file: $file,
+            src: $this->createVimeoUrl($options, $file),
+            attributes: empty($attributes) ? '' : ' ' . $this->implodeAttributes($attributes),
+            width: $width,
+            height: $height,
+            type: self::type,
+            templateName: self::templateName,
+        );
     }
 }
