@@ -24,8 +24,8 @@ class TwoClickTagRenderer
     public function __construct(
         protected readonly ViewFactoryInterface $viewFactory,
     ) {
-        $typoScriptSettings = $GLOBALS['TYPO3_REQUEST']->getAttribute('frontend.typoscript')->getSetupArray();
-        $this->extensionConfiguration = $typoScriptSettings['plugin.']['tx_twoclickmedia.'];
+        $typoScriptSettings = $GLOBALS['TYPO3_REQUEST']->getAttribute('frontend.typoscript')?->getSetupArray();
+        $this->extensionConfiguration = $typoScriptSettings['plugin.']['tx_twoclickmedia.'] ?? [];
     }
 
     public function shouldRender(): bool
