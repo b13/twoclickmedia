@@ -7,7 +7,8 @@
 	],
 	"extra": {
 		"typo3/cms": {
-			"extension-key": "twoclickmedia"
+			"extension-key": "twoclickmedia",
+			"version": "3.0.1"
 		}
 	},
 	"autoload": {
